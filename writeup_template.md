@@ -10,12 +10,26 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
+[Hog features with YUV for car on ch0]: ./output_images/hog_features_yuv_car_ch0.jpg
+[Hog features with YUV for car on ch1]: ./output_images/hog_features_yuv_car_ch1.jpg
+[Hog features with YUV for car on ch2]: ./output_images/hog_features_yuv_car_ch2.jpg
+[Hog features with YUV for notcar on ch0]: ./output_images/hog_features_yuv_notcar_ch0.jpg
+[Hog features with YUV for notcar on ch1]: ./output_images/hog_features_yuv_notcar_ch1.jpg
+[Hog features with YUV for notcar on ch2]: ./output_images/hog_features_yuv_notcar_ch2.jpg
+[Hog features with YCrCb for car on ch0]: ./output_images/hog_features_ycrcb_car_ch0.jpg
+[Hog features with YCrCb for car on ch1]: ./output_images/hog_features_ycrcb_car_ch1.jpg
+[Hog features with YCrCb for car on ch2]: ./output_images/hog_features_ycrcb_car_ch2.jpg
+[Hog features with YCrCb for notcar on ch0]: ./output_images/hog_features_ycrcb_notcar_ch0.jpg
+[Hog features with YCrCb for notcar on ch1]: ./output_images/hog_features_ycrcb_notcar_ch1.jpg
+[Hog features with YCrCb for notcar on ch2]: ./output_images/hog_features_ycrcb_notcar_ch2.jpg
 [Boundary boxes and heat map for test_images/test1.jpg]: ./output_images/bbox_hmap1.jpg
 [Boundary boxes and heat map for test_images/test2.jpg]: ./output_images/bbox_hmap2.jpg
 [Boundary boxes and heat map for test_images/test3.jpg]: ./output_images/bbox_hmap3.jpg
 [Boundary boxes and heat map for test_images/test4.jpg]: ./output_images/bbox_hmap4.jpg
 [Boundary boxes and heat map for test_images/test5.jpg]: ./output_images/bbox_hmap5.jpg
 [Boundary boxes and heat map for test_images/test6.jpg]: ./output_images/bbox_hmap6.jpg
+[Heatmap of detections]: ./output_images/heatmap.jpg
+[Boundary boxes]: ./output_images/boxes.jpg
 [video1]: ./project_video.mp4
 
 
@@ -25,20 +39,32 @@ The goals / steps of this project are the following:
 HOG features are extracted in get_hog_features() with orient = 9  pix_per_cell = 8 cell_per_block = 2
 
 I first used colorspace=YUV
-[Hog features with YUV for car on ch0]: ./output_images/hog_features_yuv_car_ch0.jpg
+![Hog features with YUV for car on ch0]: ./output_images/hog_features_yuv_car_ch0.jpg
+
 [Hog features with YUV for car on ch1]: ./output_images/hog_features_yuv_car_ch1.jpg
+
 [Hog features with YUV for car on ch2]: ./output_images/hog_features_yuv_car_ch2.jpg
+
 [Hog features with YUV for notcar on ch0]: ./output_images/hog_features_yuv_notcar_ch0.jpg
+
 [Hog features with YUV for notcar on ch1]: ./output_images/hog_features_yuv_notcar_ch1.jpg
+
 [Hog features with YUV for notcar on ch2]: ./output_images/hog_features_yuv_notcar_ch2.jpg
+
 
 I switched to colorspace=YCrCb as the results for detection were much better. More explanation in #2 below. 
 [Hog features with YCrCb for car on ch0]: ./output_images/hog_features_ycrcb_car_ch0.jpg
+
 [Hog features with YCrCb for car on ch1]: ./output_images/hog_features_ycrcb_car_ch1.jpg
+
 [Hog features with YCrCb for car on ch2]: ./output_images/hog_features_ycrcb_car_ch2.jpg
+
 [Hog features with YCrCb for notcar on ch0]: ./output_images/hog_features_ycrcb_notcar_ch0.jpg
+
 [Hog features with YCrCb for notcar on ch1]: ./output_images/hog_features_ycrcb_notcar_ch1.jpg
+
 [Hog features with YCrCb for notcar on ch2]: ./output_images/hog_features_ycrcb_notcar_ch2.jpg
+
 
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
@@ -76,11 +102,17 @@ The find_cars only has to extract hog features once and then can be sub-sampled 
 I started with scale 1.5 but noticed that the detection worked a lot better with scale=2 using YCrCb colorspace 3-channel HOG features along with spatially binned color and histograms of color features in a normalized feature vector.  Here's the output of the pipeline on the test images:
 
 [Boundary boxes and heat map for test_images/test1.jpg]: ./output_images/bbox_hmap1.jpg
+
 [Boundary boxes and heat map for test_images/test2.jpg]: ./output_images/bbox_hmap2.jpg
+
 [Boundary boxes and heat map for test_images/test3.jpg]: ./output_images/bbox_hmap3.jpg
+
 [Boundary boxes and heat map for test_images/test4.jpg]: ./output_images/bbox_hmap4.jpg
+
 [Boundary boxes and heat map for test_images/test5.jpg]: ./output_images/bbox_hmap5.jpg
+
 [Boundary boxes and heat map for test_images/test6.jpg]: ./output_images/bbox_hmap6.jpg
+
 ---
 
 ### Video Implementation
@@ -95,8 +127,9 @@ In process_image() I accumulate boundary box detections over n frames and set a 
 I found that for a single image setting the threshold to 2 for plotting the boundary box on the heatmap was good. Then I scaled that to average over 50 frames (approximately 2 seconds of video clip) and used the same detection to heatmap ratio of 1:2 that I discovered through the test images. This allowed me to hold a correct detection longer and filter out false positives.  
 
 Here's an example boundary boxes and heatmaps from the last frame of 10-12 seconds of the video clip:
-![Heatmap of detections][./output_images/heatmap.jpg]
-![Boundary boxes][./output_images/boxes.jpg]
+[Heatmap of detections]: ./output_images/heatmap.jpg
+
+[Boundary boxes]: ./output_images/boxes.jpg
 
 
 ---
