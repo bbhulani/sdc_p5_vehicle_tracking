@@ -41,29 +41,19 @@ HOG features are extracted in get_hog_features() with orient = 9  pix_per_cell =
 I first used colorspace=YUV
 
 ![Hog features with YUV for car on ch0]: Hog features with YUV for car on ch0
-
 ![Hog features with YUV for car on ch1]: Hog features with YUV for car on ch1
-
 ![Hog features with YUV for car on ch2]: Hog features with YUV for car on ch2
-
 ![Hog features with YUV for notcar on ch0]: Hog features with YUV for notcar on ch0
-
 ![Hog features with YUV for notcar on ch1]: Hog features with YUV for notcar on ch1
-
 ![Hog features with YUV for notcar on ch2]: Hog features with YUV for notcar on ch2
 
 
 I switched to colorspace=YCrCb as the results for detection were much better. More explanation in #2 below. 
 ![Hog features with YCrCb for car on ch0]: Hog features with YCrCb for car on ch0
-
 ![Hog features with YCrCb for car on ch1]: Hog features with YCrCb for car on ch1
-
 ![Hog features with YCrCb for car on ch2]: Hog features with YCrCb for car on ch2
-
 ![Hog features with YCrCb for notcar on ch0]: Hog features with YCrCb for notcar on ch0
-
 ![Hog features with YCrCb for notcar on ch1]: Hog features with YCrCb for notcar on ch1
-
 ![Hog features with YCrCb for notcar on ch2]: Hog features with YCrCb for notcar on ch2
 
 
@@ -103,15 +93,10 @@ The find_cars only has to extract hog features once and then can be sub-sampled 
 I started with scale 1.5 but noticed that the detection worked a lot better with scale=2 using YCrCb colorspace 3-channel HOG features along with spatially binned color and histograms of color features in a normalized feature vector.  Here's the output of the pipeline on the test images:
 
 ![Boundary boxes and heat map for test_images/test1.jpg]: Boundary boxes and heat map for test_images/test1.jpg
-
 ![Boundary boxes and heat map for test_images/test2.jpg]: Boundary boxes and heat map for test_images/test2.jpg
-
 ![Boundary boxes and heat map for test_images/test3.jpg]: Boundary boxes and heat map for test_images/test3.jpg
-
 ![Boundary boxes and heat map for test_images/test4.jpg]: Boundary boxes and heat map for test_images/test4.jpg
-
 ![Boundary boxes and heat map for test_images/test5.jpg]: Boundary boxes and heat map for test_images/test5.jpg
-
 ![Boundary boxes and heat map for test_images/test6.jpg]: Boundary boxes and heat map for test_images/test6.jpg
 
 ---
@@ -119,9 +104,7 @@ I started with scale 1.5 but noticed that the detection worked a lot better with
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a ![link to my video result](./project_video_out.mp4)
-
-Here's my video result ![video1]:
+Here's a [link to my video result](./project_video_out.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes. 
@@ -131,7 +114,6 @@ I found that for a single image setting the threshold to 2 for plotting the boun
 
 Here's an example boundary boxes and heatmaps from the last frame of 10-12 seconds of the video clip:
 ![Heatmap of detections]: Heatmap of detections
-
 ![Boundary boxes]: Boundary boxes
 
 
